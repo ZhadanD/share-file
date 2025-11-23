@@ -23,6 +23,9 @@ public class ContentController extends HttpServlet {
             case "/auth/login":
                 path = "/pages/auth/login.html";
                 break;
+            case "/myFiles":
+                path = "/pages/myFiles.html";
+                break;
         }
 
         try {

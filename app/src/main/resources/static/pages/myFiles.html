@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Мои файлы</title>
+
+    <link rel="stylesheet" href="/css/colors.css" />
+    <link rel="stylesheet" href="/css/commonStyles.css" />
+    <link rel="stylesheet" href="/css/myFiles.css" />
+  </head>
+  <body>
+    <div class="container">
+      <header class="header">
+        <h1 class="header-title">Мои файлы</h1>
+      </header>
+
+      <main class="main">
+        <button
+          type="button"
+          class="upload-btn"
+          id="uploadBtn"
+          onclick="toggleAccordion()"
+        >
+          Загрузить файл
+        </button>
+
+        <div class="accordion" id="uploadAccordion">
+          <div class="accordion-content">
+            <form class="upload-form" id="uploadForm">
+              <div class="upload-area" id="uploadArea">
+                <input
+                  onchange="handleFileSelect(this.files)"
+                  type="file"
+                  class="upload-area-input"
+                  id="fileInput"
+                />
+                <div class="upload-area-content">
+                  <h3 class="upload-area-title">Перетащите файл сюда</h3>
+                  <p class="upload-area-subtitle">или нажмите для выбора</p>
+                </div>
+              </div>
+
+              <div class="form-actions">
+                <button
+                  type="button"
+                  class="btn btn-success"
+                  onclick="sendFile()"
+                  disabled
+                  id="submitBtn"
+                >
+                  Загрузить файл
+                </button>
+                <button
+                  type="button"
+                  class="btn btn-outline-danger"
+                  id="cancelBtn"
+                  onclick="closeAccordion(); resetForm()"
+                >
+                  Отмена
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+
+        <section class="files-section">
+          <h2 class="files-section-title">Загруженные файлы</h2>
+
+          <p id="noFilesMessage" class="no-files-text"></p>
+
+          <div class="list-files" id="list-files"></div>
+        </section>
+      </main>
+    </div>
+
+    <script src="/js/myFiles.js"></script>
+  </body>
+</html>

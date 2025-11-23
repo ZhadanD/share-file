@@ -12,17 +12,24 @@ import org.apache.catalina.Wrapper;
 import jakarta.servlet.http.HttpServlet;
 import share.file.controllers.AuthController;
 import share.file.controllers.ContentController;
+import share.file.controllers.DownloadFileController;
+import share.file.controllers.FileController;
 import share.file.controllers.RegisterController;
 
 public class App {
     private static Map<String, HttpServlet> servlets = Map.of(
         "registerController", new RegisterController(),
-        "authController", new AuthController()
+        "authController", new AuthController(),
+        "fileController", new FileController(),
+        "downloadFileController", new DownloadFileController()
     );
 
     private static Map<String, String> endPoints = Map.of(
         "/api/auth/register", "registerController",
-        "/api/auth/login", "authController"
+        "/api/auth/login", "authController",
+        "/api/files/upload", "fileController",
+        "/api/files", "fileController",
+        "/api/files/download", "downloadFileController"
     );
     
     private static String[] content = {
@@ -31,6 +38,9 @@ public class App {
         "/js/register.js",
         "/auth/login",
         "/js/login.js",
+        "/myFiles",
+        "/css/myFiles.css",
+        "/js/myFiles.js",
         "/css/colors.css",
         "/css/commonStyles.css"
     };
