@@ -7,17 +7,32 @@ import java.util.Map.Entry;
 import org.apache.catalina.connector.Connector;
 import org.apache.catalina.startup.Tomcat;
 import org.apache.catalina.Context;
+import org.apache.catalina.Wrapper;
 
 import jakarta.servlet.http.HttpServlet;
+import share.file.controllers.AuthController;
+import share.file.controllers.ContentController;
+import share.file.controllers.RegisterController;
 
 public class App {
-    private static Map<String, HttpServlet> servlets = Map.of();
+    private static Map<String, HttpServlet> servlets = Map.of(
+        "registerController", new RegisterController(),
+        "authController", new AuthController()
+    );
 
-    private static Map<String, String> endPoints = Map.of();
+    private static Map<String, String> endPoints = Map.of(
+        "/api/auth/register", "registerController",
+        "/api/auth/login", "authController"
+    );
     
     private static String[] content = {
-        "/css/*.css",
-        "/js/*.js"
+        "/auth/register",
+        "/css/register.css",
+        "/js/register.js",
+        "/auth/login",
+        "/js/login.js",
+        "/css/colors.css",
+        "/css/commonStyles.css"
     };
 
     public static void main(String[] args) throws Exception {
@@ -40,6 +55,15 @@ public class App {
         for (Entry<String, String> entry : endPoints.entrySet())
             context.addServletMappingDecoded(entry.getKey(), entry.getValue());
         
+        Wrapper contentController = Tomcat.addServlet(
+            context, 
+            "contentController", 
+            new ContentController()
+        );
+
+        for (String resource : content)
+            contentController.addMapping(resource);
+
         tomcat.start();
 
         System.out.println("Server started on port " + port);

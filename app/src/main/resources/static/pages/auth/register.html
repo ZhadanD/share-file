@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Регистрация</title>
+
+    <link rel="stylesheet" href="/css/colors.css">
+    <link rel="stylesheet" href="/css/commonStyles.css">
+    <link rel="stylesheet" href="/css/register.css">
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <h1 class="header-title">Регистрация</h1>
+        </header>
+
+        <main class="beautiful-form">
+            <label for="username">Имя пользователя</label>
+            <input type="text" class="beautiful-input" id="username" placeholder="Введите имя пользователя">
+
+            <br/>
+
+            <label for="password">Пароль</label>
+            <input type="password" class="beautiful-input" id="password" placeholder="Введите пароль">
+
+            <br/>
+
+            <label for="repeat-password">Повторите пароль</label>
+            <input type="password" class="beautiful-input" id="repeat-password" placeholder="Введите пароль еще раз">
+
+            <br/>
+
+            <p>Уже зареган? <a href="/auth/login" class="beautiful-link">Логинься</a>!</p>
+
+            <br/>
+
+            <button type="button" class="beautiful-btn" id="btnRegister" onclick="register()">
+                Зарегаться
+            </button>
+        </main>
+    </div>
+
+    <script src="/js/register.js"></script>
+</body>
+</html>
